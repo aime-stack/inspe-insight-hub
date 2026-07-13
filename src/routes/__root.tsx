@@ -79,21 +79,25 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Inspe School Research CRM" },
+      { title: "Dashboard · Inspe School Research CRM" },
       {
         name: "description",
         content:
-          "Customer discovery, school research, and sales intelligence platform powering Inspe SchoolOS.",
+          "Executive overview of research progress, school coverage, discovered problems, and feature demand.",
       },
       { name: "author", content: "Spellabs Solutions Ltd" },
-      { property: "og:title", content: "Inspe School Research CRM" },
+      { property: "og:title", content: "Dashboard · Inspe School Research CRM" },
       {
         property: "og:description",
         content:
-          "Research schools, capture problems, and prioritize opportunities across the Inspe ecosystem.",
+          "Executive overview of research progress, school coverage, discovered problems, and feature demand.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Dashboard · Inspe School Research CRM" },
+      { name: "twitter:description", content: "Executive overview of research progress, school coverage, discovered problems, and feature demand." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/71b15c97-ff95-4a3a-aa5f-bbdcf33b9bc9/id-preview-d815bb82--22485e9e-82b3-4763-b6f4-3e1c76235155.lovable.app-1783905931641.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/71b15c97-ff95-4a3a-aa5f-bbdcf33b9bc9/id-preview-d815bb82--22485e9e-82b3-4763-b6f4-3e1c76235155.lovable.app-1783905931641.png" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },

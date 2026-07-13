@@ -9,8 +9,74 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as VisitsRouteImport } from './routes/visits'
+import { Route as SettingsRouteImport } from './routes/settings'
+import { Route as SchoolsRouteImport } from './routes/schools'
+import { Route as ResearchRouteImport } from './routes/research'
+import { Route as ReportsRouteImport } from './routes/reports'
+import { Route as ProblemsRouteImport } from './routes/problems'
+import { Route as FollowUpsRouteImport } from './routes/follow-ups'
+import { Route as FeaturesRouteImport } from './routes/features'
+import { Route as EvidenceRouteImport } from './routes/evidence'
+import { Route as ContactsRouteImport } from './routes/contacts'
+import { Route as AnalyticsRouteImport } from './routes/analytics'
 import { Route as IndexRouteImport } from './routes/index'
 
+const VisitsRoute = VisitsRouteImport.update({
+  id: '/visits',
+  path: '/visits',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SchoolsRoute = SchoolsRouteImport.update({
+  id: '/schools',
+  path: '/schools',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResearchRoute = ResearchRouteImport.update({
+  id: '/research',
+  path: '/research',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReportsRoute = ReportsRouteImport.update({
+  id: '/reports',
+  path: '/reports',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProblemsRoute = ProblemsRouteImport.update({
+  id: '/problems',
+  path: '/problems',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FollowUpsRoute = FollowUpsRouteImport.update({
+  id: '/follow-ups',
+  path: '/follow-ups',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FeaturesRoute = FeaturesRouteImport.update({
+  id: '/features',
+  path: '/features',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EvidenceRoute = EvidenceRouteImport.update({
+  id: '/evidence',
+  path: '/evidence',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactsRoute = ContactsRouteImport.update({
+  id: '/contacts',
+  path: '/contacts',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AnalyticsRoute = AnalyticsRouteImport.update({
+  id: '/analytics',
+  path: '/analytics',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -19,28 +85,186 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/analytics': typeof AnalyticsRoute
+  '/contacts': typeof ContactsRoute
+  '/evidence': typeof EvidenceRoute
+  '/features': typeof FeaturesRoute
+  '/follow-ups': typeof FollowUpsRoute
+  '/problems': typeof ProblemsRoute
+  '/reports': typeof ReportsRoute
+  '/research': typeof ResearchRoute
+  '/schools': typeof SchoolsRoute
+  '/settings': typeof SettingsRoute
+  '/visits': typeof VisitsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/analytics': typeof AnalyticsRoute
+  '/contacts': typeof ContactsRoute
+  '/evidence': typeof EvidenceRoute
+  '/features': typeof FeaturesRoute
+  '/follow-ups': typeof FollowUpsRoute
+  '/problems': typeof ProblemsRoute
+  '/reports': typeof ReportsRoute
+  '/research': typeof ResearchRoute
+  '/schools': typeof SchoolsRoute
+  '/settings': typeof SettingsRoute
+  '/visits': typeof VisitsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/analytics': typeof AnalyticsRoute
+  '/contacts': typeof ContactsRoute
+  '/evidence': typeof EvidenceRoute
+  '/features': typeof FeaturesRoute
+  '/follow-ups': typeof FollowUpsRoute
+  '/problems': typeof ProblemsRoute
+  '/reports': typeof ReportsRoute
+  '/research': typeof ResearchRoute
+  '/schools': typeof SchoolsRoute
+  '/settings': typeof SettingsRoute
+  '/visits': typeof VisitsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/analytics'
+    | '/contacts'
+    | '/evidence'
+    | '/features'
+    | '/follow-ups'
+    | '/problems'
+    | '/reports'
+    | '/research'
+    | '/schools'
+    | '/settings'
+    | '/visits'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/analytics'
+    | '/contacts'
+    | '/evidence'
+    | '/features'
+    | '/follow-ups'
+    | '/problems'
+    | '/reports'
+    | '/research'
+    | '/schools'
+    | '/settings'
+    | '/visits'
+  id:
+    | '__root__'
+    | '/'
+    | '/analytics'
+    | '/contacts'
+    | '/evidence'
+    | '/features'
+    | '/follow-ups'
+    | '/problems'
+    | '/reports'
+    | '/research'
+    | '/schools'
+    | '/settings'
+    | '/visits'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AnalyticsRoute: typeof AnalyticsRoute
+  ContactsRoute: typeof ContactsRoute
+  EvidenceRoute: typeof EvidenceRoute
+  FeaturesRoute: typeof FeaturesRoute
+  FollowUpsRoute: typeof FollowUpsRoute
+  ProblemsRoute: typeof ProblemsRoute
+  ReportsRoute: typeof ReportsRoute
+  ResearchRoute: typeof ResearchRoute
+  SchoolsRoute: typeof SchoolsRoute
+  SettingsRoute: typeof SettingsRoute
+  VisitsRoute: typeof VisitsRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/visits': {
+      id: '/visits'
+      path: '/visits'
+      fullPath: '/visits'
+      preLoaderRoute: typeof VisitsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/schools': {
+      id: '/schools'
+      path: '/schools'
+      fullPath: '/schools'
+      preLoaderRoute: typeof SchoolsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/research': {
+      id: '/research'
+      path: '/research'
+      fullPath: '/research'
+      preLoaderRoute: typeof ResearchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reports': {
+      id: '/reports'
+      path: '/reports'
+      fullPath: '/reports'
+      preLoaderRoute: typeof ReportsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/problems': {
+      id: '/problems'
+      path: '/problems'
+      fullPath: '/problems'
+      preLoaderRoute: typeof ProblemsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/follow-ups': {
+      id: '/follow-ups'
+      path: '/follow-ups'
+      fullPath: '/follow-ups'
+      preLoaderRoute: typeof FollowUpsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/features': {
+      id: '/features'
+      path: '/features'
+      fullPath: '/features'
+      preLoaderRoute: typeof FeaturesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/evidence': {
+      id: '/evidence'
+      path: '/evidence'
+      fullPath: '/evidence'
+      preLoaderRoute: typeof EvidenceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contacts': {
+      id: '/contacts'
+      path: '/contacts'
+      fullPath: '/contacts'
+      preLoaderRoute: typeof ContactsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/analytics': {
+      id: '/analytics'
+      path: '/analytics'
+      fullPath: '/analytics'
+      preLoaderRoute: typeof AnalyticsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -53,17 +277,18 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AnalyticsRoute: AnalyticsRoute,
+  ContactsRoute: ContactsRoute,
+  EvidenceRoute: EvidenceRoute,
+  FeaturesRoute: FeaturesRoute,
+  FollowUpsRoute: FollowUpsRoute,
+  ProblemsRoute: ProblemsRoute,
+  ReportsRoute: ReportsRoute,
+  ResearchRoute: ResearchRoute,
+  SchoolsRoute: SchoolsRoute,
+  SettingsRoute: SettingsRoute,
+  VisitsRoute: VisitsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}

@@ -12,4 +12,11 @@ export default defineConfig({
     // nitro/vite builds from this
     server: { entry: "server" },
   },
+  // The app is hosted on Vercel, not Cloudflare — override the wrapper's
+  // Cloudflare Workers default so server functions run on Vercel's Node.js
+  // serverless runtime (needed for a raw TCP Postgres connection; the
+  // Cloudflare Workers build this produced doesn't run correctly there).
+  nitro: {
+    preset: "vercel",
+  },
 });

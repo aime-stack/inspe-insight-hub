@@ -1,7 +1,14 @@
 import type { ReactNode } from "react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
 import { Link } from "@tanstack/react-router";
 
 export function PageHeader({
@@ -17,45 +24,50 @@ export function PageHeader({
   actions?: ReactNode;
   className?: string;
 }) {
+  // The current page's breadcrumb crumb and the title say the same thing —
+  // render title once as the trail's current-page node instead of twice.
+  const ancestors = breadcrumbs?.slice(0, -1) ?? [];
+
   return (
     <div className={cn("border-b bg-background", className)}>
-      <div className="px-4 md:px-8 pt-6 pb-5">
-        {breadcrumbs && breadcrumbs.length > 0 && (
-          <Breadcrumb className="mb-3">
-            <BreadcrumbList>
-              {breadcrumbs.map((b, i) => (
-                <BreadcrumbItemWrap key={i} last={i === breadcrumbs.length - 1} {...b} />
-              ))}
-            </BreadcrumbList>
-          </Breadcrumb>
-        )}
-        <div className="grid grid-cols-[minmax(0,1fr)_auto] items-start gap-4 sm:flex sm:items-center sm:justify-between">
-          <div className="min-w-0">
-            <h1 className="truncate text-2xl font-semibold tracking-tight text-foreground">{title}</h1>
-            {description && (
-              <p className="mt-1 text-sm text-muted-foreground">{description}</p>
-            )}
-          </div>
-          {actions && <div className="flex shrink-0 items-center gap-2">{actions}</div>}
-        </div>
+      <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 px-4 py-4 md:px-8">
+        <Breadcrumb className="min-w-0 flex-1">
+          <BreadcrumbList>
+            {ancestors.map((b, i) => (
+              <AncestorCrumb key={i} {...b} />
+            ))}
+            <BreadcrumbItem className="min-w-0">
+              <BreadcrumbPage className="flex min-w-0 flex-wrap items-baseline gap-x-2 gap-y-0.5 text-base font-semibold text-foreground">
+                <span className="truncate">{title}</span>
+                {description && (
+                  <span className="truncate text-sm font-normal text-muted-foreground">
+                    <span className="mr-2 text-border">·</span>
+                    {description}
+                  </span>
+                )}
+              </BreadcrumbPage>
+            </BreadcrumbItem>
+          </BreadcrumbList>
+        </Breadcrumb>
+        {actions && <div className="flex shrink-0 items-center gap-2">{actions}</div>}
       </div>
     </div>
   );
 }
 
-function BreadcrumbItemWrap({ label, to, last }: { label: string; to?: string; last: boolean }) {
+function AncestorCrumb({ label, to }: { label: string; to?: string }) {
   return (
     <>
       <BreadcrumbItem>
-        {last || !to ? (
-          <BreadcrumbPage>{label}</BreadcrumbPage>
-        ) : (
+        {to ? (
           <BreadcrumbLink asChild>
             <Link to={to}>{label}</Link>
           </BreadcrumbLink>
+        ) : (
+          <span>{label}</span>
         )}
       </BreadcrumbItem>
-      {!last && <BreadcrumbSeparator />}
+      <BreadcrumbSeparator />
     </>
   );
 }

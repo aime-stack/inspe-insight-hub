@@ -158,6 +158,7 @@ export function AppLayout({ children }: { children: ReactNode }) {
                   size="icon"
                   variant="ghost"
                   className="h-7 w-7 text-[color:var(--sidebar-foreground)]/70 hover:text-[color:var(--sidebar-foreground)] group-data-[collapsible=icon]:hidden"
+                  aria-label="Log out"
                 >
                   <LogOut className="h-4 w-4" />
                 </Button>
@@ -184,7 +185,7 @@ export function AppLayout({ children }: { children: ReactNode }) {
             <Badge className="hidden sm:inline-flex bg-cream text-cream-foreground hover:bg-cream border-transparent">
               Beta
             </Badge>
-            <Button variant="ghost" size="icon" className="relative">
+            <Button variant="ghost" size="icon" className="relative" aria-label="Notifications">
               <Bell className="h-4 w-4" />
               <span className="absolute right-2 top-2 h-2 w-2 rounded-full bg-accent" />
             </Button>

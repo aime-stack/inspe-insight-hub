@@ -12,7 +12,6 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as VisitsRouteImport } from './routes/visits'
 import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as SchoolsRouteImport } from './routes/schools'
-import { Route as ResearchRouteImport } from './routes/research'
 import { Route as ReportsRouteImport } from './routes/reports'
 import { Route as ProblemsRouteImport } from './routes/problems'
 import { Route as FollowUpsRouteImport } from './routes/follow-ups'
@@ -21,6 +20,9 @@ import { Route as EvidenceRouteImport } from './routes/evidence'
 import { Route as ContactsRouteImport } from './routes/contacts'
 import { Route as AnalyticsRouteImport } from './routes/analytics'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ResearchIndexRouteImport } from './routes/research/index'
+import { Route as ResearchResponseIdRouteImport } from './routes/research/$responseId'
+import { Route as ResearchTemplatesTemplateIdRouteImport } from './routes/research/templates/$templateId'
 
 const VisitsRoute = VisitsRouteImport.update({
   id: '/visits',
@@ -35,11 +37,6 @@ const SettingsRoute = SettingsRouteImport.update({
 const SchoolsRoute = SchoolsRouteImport.update({
   id: '/schools',
   path: '/schools',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ResearchRoute = ResearchRouteImport.update({
-  id: '/research',
-  path: '/research',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ReportsRoute = ReportsRouteImport.update({
@@ -82,6 +79,22 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ResearchIndexRoute = ResearchIndexRouteImport.update({
+  id: '/research/',
+  path: '/research/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResearchResponseIdRoute = ResearchResponseIdRouteImport.update({
+  id: '/research/$responseId',
+  path: '/research/$responseId',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResearchTemplatesTemplateIdRoute =
+  ResearchTemplatesTemplateIdRouteImport.update({
+    id: '/research/templates/$templateId',
+    path: '/research/templates/$templateId',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -92,10 +105,12 @@ export interface FileRoutesByFullPath {
   '/follow-ups': typeof FollowUpsRoute
   '/problems': typeof ProblemsRoute
   '/reports': typeof ReportsRoute
-  '/research': typeof ResearchRoute
   '/schools': typeof SchoolsRoute
   '/settings': typeof SettingsRoute
   '/visits': typeof VisitsRoute
+  '/research/$responseId': typeof ResearchResponseIdRoute
+  '/research/': typeof ResearchIndexRoute
+  '/research/templates/$templateId': typeof ResearchTemplatesTemplateIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -106,10 +121,12 @@ export interface FileRoutesByTo {
   '/follow-ups': typeof FollowUpsRoute
   '/problems': typeof ProblemsRoute
   '/reports': typeof ReportsRoute
-  '/research': typeof ResearchRoute
   '/schools': typeof SchoolsRoute
   '/settings': typeof SettingsRoute
   '/visits': typeof VisitsRoute
+  '/research/$responseId': typeof ResearchResponseIdRoute
+  '/research': typeof ResearchIndexRoute
+  '/research/templates/$templateId': typeof ResearchTemplatesTemplateIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -121,10 +138,12 @@ export interface FileRoutesById {
   '/follow-ups': typeof FollowUpsRoute
   '/problems': typeof ProblemsRoute
   '/reports': typeof ReportsRoute
-  '/research': typeof ResearchRoute
   '/schools': typeof SchoolsRoute
   '/settings': typeof SettingsRoute
   '/visits': typeof VisitsRoute
+  '/research/$responseId': typeof ResearchResponseIdRoute
+  '/research/': typeof ResearchIndexRoute
+  '/research/templates/$templateId': typeof ResearchTemplatesTemplateIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -137,10 +156,12 @@ export interface FileRouteTypes {
     | '/follow-ups'
     | '/problems'
     | '/reports'
-    | '/research'
     | '/schools'
     | '/settings'
     | '/visits'
+    | '/research/$responseId'
+    | '/research/'
+    | '/research/templates/$templateId'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -151,10 +172,12 @@ export interface FileRouteTypes {
     | '/follow-ups'
     | '/problems'
     | '/reports'
-    | '/research'
     | '/schools'
     | '/settings'
     | '/visits'
+    | '/research/$responseId'
+    | '/research'
+    | '/research/templates/$templateId'
   id:
     | '__root__'
     | '/'
@@ -165,10 +188,12 @@ export interface FileRouteTypes {
     | '/follow-ups'
     | '/problems'
     | '/reports'
-    | '/research'
     | '/schools'
     | '/settings'
     | '/visits'
+    | '/research/$responseId'
+    | '/research/'
+    | '/research/templates/$templateId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -180,10 +205,12 @@ export interface RootRouteChildren {
   FollowUpsRoute: typeof FollowUpsRoute
   ProblemsRoute: typeof ProblemsRoute
   ReportsRoute: typeof ReportsRoute
-  ResearchRoute: typeof ResearchRoute
   SchoolsRoute: typeof SchoolsRoute
   SettingsRoute: typeof SettingsRoute
   VisitsRoute: typeof VisitsRoute
+  ResearchResponseIdRoute: typeof ResearchResponseIdRoute
+  ResearchIndexRoute: typeof ResearchIndexRoute
+  ResearchTemplatesTemplateIdRoute: typeof ResearchTemplatesTemplateIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -207,13 +234,6 @@ declare module '@tanstack/react-router' {
       path: '/schools'
       fullPath: '/schools'
       preLoaderRoute: typeof SchoolsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/research': {
-      id: '/research'
-      path: '/research'
-      fullPath: '/research'
-      preLoaderRoute: typeof ResearchRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/reports': {
@@ -272,6 +292,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/research/': {
+      id: '/research/'
+      path: '/research'
+      fullPath: '/research/'
+      preLoaderRoute: typeof ResearchIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/research/$responseId': {
+      id: '/research/$responseId'
+      path: '/research/$responseId'
+      fullPath: '/research/$responseId'
+      preLoaderRoute: typeof ResearchResponseIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/research/templates/$templateId': {
+      id: '/research/templates/$templateId'
+      path: '/research/templates/$templateId'
+      fullPath: '/research/templates/$templateId'
+      preLoaderRoute: typeof ResearchTemplatesTemplateIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -284,11 +325,23 @@ const rootRouteChildren: RootRouteChildren = {
   FollowUpsRoute: FollowUpsRoute,
   ProblemsRoute: ProblemsRoute,
   ReportsRoute: ReportsRoute,
-  ResearchRoute: ResearchRoute,
   SchoolsRoute: SchoolsRoute,
   SettingsRoute: SettingsRoute,
   VisitsRoute: VisitsRoute,
+  ResearchResponseIdRoute: ResearchResponseIdRoute,
+  ResearchIndexRoute: ResearchIndexRoute,
+  ResearchTemplatesTemplateIdRoute: ResearchTemplatesTemplateIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
